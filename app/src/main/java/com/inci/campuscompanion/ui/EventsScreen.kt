@@ -26,6 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.inci.campuscompanion.model.CampusEvent
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material3.Icon
+import androidx.compose.material3.TextButton
+import androidx.compose.foundation.layout.Row
 
 @Composable
 fun EventsScreen(
@@ -39,10 +44,26 @@ fun EventsScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(
-            text = "Campus Events",
-            style = MaterialTheme.typography.headlineMedium
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "Campus Events",
+                style = MaterialTheme.typography.headlineMedium
+            )
+
+            TextButton(
+                onClick = { viewModel.loadEvents() }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Refresh,
+                    contentDescription = "Refresh events"
+                )
+                Text("Refresh")
+            }
+        }
 
         Spacer(modifier = Modifier.padding(8.dp))
 
